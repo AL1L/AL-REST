@@ -17,7 +17,7 @@ export default class HelloEndpoint extends Endpoint {
      * @param {string} method 
      * @param {Url} url 
      */
-    canHandle(method, url) {
+    async canHandle(method, url) {
         // Will return only at root
         return url.path === '/';
         // Replace the line above with the one below
@@ -30,7 +30,7 @@ export default class HelloEndpoint extends Endpoint {
      * 
      * @param {Request} request 
      */
-    handle(request) {
+    async handle(request) {
         request.res.setMessage('Hello, world!');
     }
 }

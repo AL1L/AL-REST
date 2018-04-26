@@ -74,7 +74,7 @@ export default class Request {
         this.incomingMessage.on('close', () => this.close());
 
         var form = new formidable.IncomingForm();
-        form.parse(this.incomingMessage, (err, fields, files) => {
+        form.parse(this.incomingMessage, async (err, fields, files) => {
             this.form = form;
             this.fields = fields;
             this.files = files;
@@ -85,6 +85,7 @@ export default class Request {
              * @type {Request}
              */
             this.server.emit('request', this);
+            await this.server.endpointManager.callEndpoints(this);
             this.sendResponse();
         });
     }

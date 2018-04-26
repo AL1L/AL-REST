@@ -11,7 +11,7 @@ export default class EndpointManager {
         this._endpoints = [];
         this._loader = new EndpointLoader(this);
 
-        server.on('request', (r) => this.callEndpoints(r));
+        // server.on('request', async (r) => await this.callEndpoints(r));
     }
 
     get loader() {
@@ -22,12 +22,13 @@ export default class EndpointManager {
      * 
      * @param {Request} request 
      */
-    callEndpoints(request) {
+    async callEndpoints(request) {
         for (let i = 0; i < this._endpoints.length; i++) {
             const endpoint = this._endpoints[i];
-            if(endpoint.canHandle(request.method, request.url) && request.open) {
+            const can = await endpoint.canHandle(request.method, request.url);
+            if(can && request.open) {
                 try {
-                    endpoint.handle(request);
+                    await endpoint.handle(request);
                 } catch(e) {
                     request.res.setStatus(500, e);
                     break;

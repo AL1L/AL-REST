@@ -33,7 +33,7 @@ export default class Endpoint {
      * @param {string} method 
      * @returns {boolean}
      */
-    canHandle(method, url) {
+    async canHandle(method, url) {
         throw new Error(`[${this.__proto__.constructor.name}#canHandle] Not implemented`);
     }
 
@@ -43,7 +43,7 @@ export default class Endpoint {
      * 
      * @param {Request} request 
      */
-    handle(request) {
+    async handle(request) {
         throw new Error(`[${this.__proto__.constructor.name}#handle] Not implemented`);
     }
 }

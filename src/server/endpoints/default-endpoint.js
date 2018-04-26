@@ -20,7 +20,7 @@ export default class DefaultEndpoint extends Endpoint {
      * @param {Url} url 
      * @returns {boolean}
      */
-    canHandle(method, url) {
+    async canHandle(method, url) {
         return true;
     }
 
@@ -30,7 +30,7 @@ export default class DefaultEndpoint extends Endpoint {
      * 
      * @param {Request} request 
      */
-    handle(request) {
+    async handle(request) {
         request.res.setStatus(404, 'Not found');
     }
 }
