@@ -14,10 +14,8 @@
   "author": "AL_1",
   "license": "UNLICENSED",
   "dependencies": {
-    "@tensorflow/tfjs": "0.x",
     "express": "^4.16.3",
-    "formidable": "^1.2.1",
-    "tfjs-yolo-tiny": "^0.0.4"
+    "formidable": "^1.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
