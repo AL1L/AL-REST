@@ -19,8 +19,10 @@ export default class EndpointLoader {
                 return;
             }
 			files.forEach((file) => {
-				const module = require(path.join('../../../', path.join(dirPath, file))).default;
-
+                const modPath = path.join(process.cwd(), path.join(dirPath, file));
+                
+                const module = require(modPath).default;
+                
 				if (this.validateClass(module)) {
 					this.endpointManager.registerEndpoint(module);
 				}

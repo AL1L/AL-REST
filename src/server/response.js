@@ -1,5 +1,4 @@
 import { isArray, isNumber } from 'util';
-import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 const http = require('http');
 const _ = require('lodash');

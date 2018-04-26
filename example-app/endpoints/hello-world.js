@@ -1,6 +1,6 @@
-import Endpoint from "../../server/endpoints/endpoint";
+import Endpoint from "../../src/server/endpoints/endpoint";
 import { Url } from "url";
-import Request from "../../server/request";
+import Request from "../../src/server/request";
 
 export default class HelloEndpoint extends Endpoint {
 
