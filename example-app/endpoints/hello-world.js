@@ -14,9 +14,10 @@ export default class HelloEndpoint extends Endpoint {
 
     /**
      * 
+     * @param {string} method 
      * @param {Url} url 
      */
-    canHandle(url) {
+    canHandle(method, url) {
         // Will return only at root
         return url.path === '/';
         // Replace the line above with the one below

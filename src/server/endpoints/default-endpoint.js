@@ -16,10 +16,11 @@ export default class DefaultEndpoint extends Endpoint {
      * Can the endpoint handle this request? 
      * (i dunno man, that request looks scary)
      * 
+     * @param {string} method 
      * @param {Url} url 
      * @returns {boolean}
      */
-    canHandle(url) {
+    canHandle(method, url) {
         return true;
     }
 

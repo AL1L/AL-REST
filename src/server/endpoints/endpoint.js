@@ -30,9 +30,10 @@ export default class Endpoint {
      * (i dunno man, that request looks scary)
      * 
      * @param {Url} url 
+     * @param {string} method 
      * @returns {boolean}
      */
-    canHandle(url) {
+    canHandle(method, url) {
         throw new Error(`[${this.__proto__.constructor.name}#canHandle] Not implemented`);
     }
 

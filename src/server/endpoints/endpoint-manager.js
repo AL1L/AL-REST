@@ -25,7 +25,7 @@ export default class EndpointManager {
     callEndpoints(request) {
         for (let i = 0; i < this._endpoints.length; i++) {
             const endpoint = this._endpoints[i];
-            if(endpoint.canHandle(request.url) && request.open) {
+            if(endpoint.canHandle(request.method, request.url) && request.open) {
                 try {
                     endpoint.handle(request);
                 } catch(e) {
