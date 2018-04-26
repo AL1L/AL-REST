@@ -88,15 +88,7 @@ export default class Server extends EventEmitter {
         });
 
         this.http.on('request', (req, res) => {
-            const request = new Request(req, res);
-            /**
-             * Request event, called when a client makes a request.
-             * 
-             * @event Server#request
-             * @type {Request}
-             */
-            this.emit('request', request);
-            request.sendResponse();
+            const request = new Request(this, req, res);
         });
         return true;
     }

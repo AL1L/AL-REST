@@ -1,4 +1,6 @@
 import Response from './response';
+import Server from './server';
+import formidable from 'formidable';
 
 const http = require('http');
 const url = require('url');
@@ -10,7 +12,12 @@ export default class Request {
      * @param {http.IncomingMessage} incomingMessage 
      * @param {http.ServerResponse} serverResponse 
      */
-    constructor(incomingMessage, serverResponse) {
+    constructor(server, incomingMessage, serverResponse) {
+        /**
+         * Server object
+         * @type {Server} server
+         */
+        this.server = server;
         /**
          * Incoming Message object from http
          * @type {http.IncomingMessage} incomingMessage
@@ -35,7 +42,7 @@ export default class Request {
          * Request method
          * @type {string} method
          */
-        this.method = incomingMessage.method;
+        this.method = incomingMessage.method.toUpperCase();
         /**
          * Raw request headers
          * @type {string[]} rawHeaders
@@ -65,6 +72,21 @@ export default class Request {
         this.serverResponse.on('finish', () => this.close());
         this.incomingMessage.on('aborted', () => this.close());
         this.incomingMessage.on('close', () => this.close());
+
+        var form = new formidable.IncomingForm();
+        form.parse(req, (err, fields, files) => {
+            this.form = form;
+            this.fields = fields;
+            this.files = files;
+            /**
+             * Request event, called when a client makes a request.
+             * 
+             * @event Server#request
+             * @type {Request}
+             */
+            this.server.emit('request', request);
+            this.sendResponse();
+        });
     }
 
     /**
@@ -94,7 +116,7 @@ export default class Request {
     }
 
     set response(res) {
-        if(this._open)
+        if (this._open)
             this._response = res;
     }
 
@@ -122,9 +144,9 @@ export default class Request {
      * Closes the request to modifications.
      */
     close() {
-        if(this._open)
+        if (this._open)
             this._open = false;
-        if(this._response.open)
+        if (this._response.open)
             this._response._close();
     }
 }
