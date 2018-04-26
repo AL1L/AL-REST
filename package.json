@@ -8,7 +8,8 @@
     "es2015"
   ],
   "scripts": {
-    "start": "nodemon src/app/app.js --exec babel-node --presets es2015,stage-2"
+    "start": "nodemon example-app/app.js --exec babel-node --presets es2015,stage-2",
+    "test": "nodemon src/app/app.js --exec babel-node --presets es2015,stage-2"
   },
   "author": "AL_1",
   "license": "UNLICENSED",
