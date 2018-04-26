@@ -2,12 +2,13 @@
   "name": "al-rest",
   "version": "1.0.0",
   "description": "Object image detection",
-  "main": "index.js",
+  "main": "dist/index.js",
   "presets": [
     "env",
     "es2015"
   ],
   "scripts": {
+    "build": "./node_modules/.bin/babel src --out-dir dist",
     "start": "nodemon example-app/app.js --exec babel-node --presets es2015,stage-2",
     "test": "nodemon src/app/app.js --exec babel-node --presets es2015,stage-2"
   },
