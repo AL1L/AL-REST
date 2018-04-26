@@ -22,7 +22,10 @@ Follow these steps, I don't care if there's a lot. Maybe I'll make a repo of thi
     * data
 5. Create these files
     * src/app.js
+    * src/endpoints/hello.js
+    * data/server.json
 
+src/app.js: 
 ```js
 import { Server } from "al-rest";
 
@@ -31,8 +34,7 @@ server.em.loader.loadDirectory('src/endpoints')
 server.start();
 ```
 
-    * src/endpoints/hello.js
-    
+src/endpoints/hello.js:
 ```js
 
 import { Url } from "url";
@@ -59,8 +61,7 @@ export default class HelloEndpoint extends Endpoint {
 }
 ```
 
-    * data/server.json
-    
+data/server.json:
 ```json
 {
     "host": "localhost",
