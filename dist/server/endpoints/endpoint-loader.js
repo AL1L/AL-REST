@@ -47,7 +47,9 @@ var EndpointLoader = function () {
                     return;
                 }
                 files.forEach(function (file) {
-                    var module = require(_path2.default.join('../../../', _path2.default.join(dirPath, file))).default;
+                    var modPath = _path2.default.join(process.cwd(), _path2.default.join(dirPath, file));
+
+                    var module = require(modPath).default;
 
                     if (_this.validateClass(module)) {
                         _this.endpointManager.registerEndpoint(module);
