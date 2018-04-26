@@ -116,7 +116,7 @@ var Request = function () {
        * @event Server#request
        * @type {Request}
        */
-      _this.server.emit('request', request);
+      _this.server.emit('request', _this);
       _this.sendResponse();
     });
   }
