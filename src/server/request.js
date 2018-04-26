@@ -84,7 +84,7 @@ export default class Request {
              * @event Server#request
              * @type {Request}
              */
-            this.server.emit('request', request);
+            this.server.emit('request', this);
             this.sendResponse();
         });
     }
