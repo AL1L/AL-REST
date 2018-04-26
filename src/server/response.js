@@ -52,7 +52,7 @@ export default class Response {
 
     bindNamespace(path) {
         path = path.toString().toLowerCase();
-        namespace = namespace.toString().toLowerCase();
+        namespace = this._namespace.toString().toLowerCase();
         if (namespace.trim() === '' || path.trim() == '') {
             return `${namespace}${path}`;
         } else {
