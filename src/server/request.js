@@ -74,7 +74,7 @@ export default class Request {
         this.incomingMessage.on('close', () => this.close());
 
         var form = new formidable.IncomingForm();
-        form.parse(req, (err, fields, files) => {
+        form.parse(this.incomingMessage, (err, fields, files) => {
             this.form = form;
             this.fields = fields;
             this.files = files;
