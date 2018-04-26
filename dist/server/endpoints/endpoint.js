@@ -52,7 +52,7 @@ var Endpoint = function () {
 
     }, {
         key: "canHandle",
-        value: function canHandle(method, url) {
+        value: async function canHandle(method, url) {
             throw new Error("[" + this.__proto__.constructor.name + "#canHandle] Not implemented");
         }
 
@@ -65,7 +65,7 @@ var Endpoint = function () {
 
     }, {
         key: "handle",
-        value: function handle(request) {
+        value: async function handle(request) {
             throw new Error("[" + this.__proto__.constructor.name + "#handle] Not implemented");
         }
     }, {

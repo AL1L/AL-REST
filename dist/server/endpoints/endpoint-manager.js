@@ -24,8 +24,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var EndpointManager = function () {
     function EndpointManager(server) {
-        var _this = this;
-
         _classCallCheck(this, EndpointManager);
 
         this.server = server;
@@ -35,9 +33,7 @@ var EndpointManager = function () {
         this._endpoints = [];
         this._loader = new _endpointLoader2.default(this);
 
-        server.on('request', function (r) {
-            return _this.callEndpoints(r);
-        });
+        // server.on('request', async (r) => await this.callEndpoints(r));
     }
 
     _createClass(EndpointManager, [{
@@ -48,12 +44,13 @@ var EndpointManager = function () {
          * 
          * @param {Request} request 
          */
-        value: function callEndpoints(request) {
+        value: async function callEndpoints(request) {
             for (var i = 0; i < this._endpoints.length; i++) {
                 var endpoint = this._endpoints[i];
-                if (endpoint.canHandle(request.method, request.url) && request.open) {
+                var can = await endpoint.canHandle(request.method, request.url);
+                if (can && request.open) {
                     try {
-                        endpoint.handle(request);
+                        await endpoint.handle(request);
                     } catch (e) {
                         request.res.setStatus(500, e);
                         break;

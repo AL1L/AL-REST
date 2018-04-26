@@ -106,7 +106,7 @@ var Request = function () {
     });
 
     var form = new _formidable2.default.IncomingForm();
-    form.parse(this.incomingMessage, function (err, fields, files) {
+    form.parse(this.incomingMessage, async function (err, fields, files) {
       _this.form = form;
       _this.fields = fields;
       _this.files = files;
@@ -117,6 +117,7 @@ var Request = function () {
        * @type {Request}
        */
       _this.server.emit('request', _this);
+      await _this.server.endpointManager.callEndpoints(_this);
       _this.sendResponse();
     });
   }

@@ -51,7 +51,7 @@ var DefaultEndpoint = function (_Endpoint) {
 
     _createClass(DefaultEndpoint, [{
         key: "canHandle",
-        value: function canHandle(method, url) {
+        value: async function canHandle(method, url) {
             return true;
         }
 
@@ -64,7 +64,7 @@ var DefaultEndpoint = function (_Endpoint) {
 
     }, {
         key: "handle",
-        value: function handle(request) {
+        value: async function handle(request) {
             request.res.setStatus(404, 'Not found');
         }
     }]);
