@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-dir dist",
+    "commit-build": "npm run build && git stage dist/ && git commit -m \"Rebuild\"",
     "start": "nodemon example-app/app.js --exec babel-node --presets es2015,stage-2",
     "test": "nodemon src/app/app.js --exec babel-node --presets es2015,stage-2"
   },
