@@ -1,4 +1,4 @@
-import Server from "../server/server";
+import Server from "../src/server/server";
 
 const server = new Server('data/server.js');
 
