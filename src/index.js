@@ -1,21 +1,13 @@
-import Server from "./server/server";
-import Log from "./server/log";
-import Request from "./server/request";
-import Response from "./server/response";
-import EndpointManager from "./server/endpoints/endpoint-manager";
-import EndpointLoader from "./server/endpoints/endpoint-loader";
-import Endpoint from "./server/endpoints/endpoint";
 
 module.exports = {
-    server: {
-        Server: Server,
-        Log: Log,
-        Request: Request,
-        Response: Response
-    },
-    endpoints: {
-        EndpointManager: EndpointManager,
-        EndpointLoader: EndpointLoader,
-        Endpoint: Endpoint
-    }
+    // Server
+    Server: require('./server/server'),
+    Log: require('./server/log'),
+    Request: require('./server/request'),
+    Response: require('./server/response'),
+
+    // Endpoint
+    EndpointManager: require('./server/endpoints/endpoint-manager'),
+    EndpointLoader: require('./server/endpoints/endpoint-loader'),
+    Endpoint: require('./server/endpoints/endpoint'),
 }
