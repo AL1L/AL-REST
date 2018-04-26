@@ -16,7 +16,7 @@ Follow these steps, I don't care if there's a lot. Maybe I'll make a repo of thi
 2. Run `npm init` and follow wizard
     * Set `node src/app.js` as test command
 3. Run `npm install git+https://github.com/AL1L/AL-REST.git`
-4. Create these directorys
+4. Create these directories
     * src
     * src/endpoints
     * data
