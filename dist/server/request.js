@@ -10,6 +10,14 @@ var _response = require('./response');
 
 var _response2 = _interopRequireDefault(_response);
 
+var _server = require('./server');
+
+var _server2 = _interopRequireDefault(_server);
+
+var _formidable = require('formidable');
+
+var _formidable2 = _interopRequireDefault(_formidable);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24,11 +32,16 @@ var Request = function () {
    * @param {http.IncomingMessage} incomingMessage 
    * @param {http.ServerResponse} serverResponse 
    */
-  function Request(incomingMessage, serverResponse) {
+  function Request(server, incomingMessage, serverResponse) {
     var _this = this;
 
     _classCallCheck(this, Request);
 
+    /**
+     * Server object
+     * @type {Server} server
+     */
+    this.server = server;
     /**
      * Incoming Message object from http
      * @type {http.IncomingMessage} incomingMessage
@@ -53,7 +66,7 @@ var Request = function () {
      * Request method
      * @type {string} method
      */
-    this.method = incomingMessage.method;
+    this.method = incomingMessage.method.toUpperCase();
     /**
      * Raw request headers
      * @type {string[]} rawHeaders
@@ -90,6 +103,21 @@ var Request = function () {
     });
     this.incomingMessage.on('close', function () {
       return _this.close();
+    });
+
+    var form = new _formidable2.default.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      _this.form = form;
+      _this.fields = fields;
+      _this.files = files;
+      /**
+       * Request event, called when a client makes a request.
+       * 
+       * @event Server#request
+       * @type {Request}
+       */
+      _this.server.emit('request', request);
+      _this.sendResponse();
     });
   }
 

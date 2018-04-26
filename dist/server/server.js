@@ -125,15 +125,7 @@ var Server = function (_EventEmitter) {
             });
 
             this.http.on('request', function (req, res) {
-                var request = new _request2.default(req, res);
-                /**
-                 * Request event, called when a client makes a request.
-                 * 
-                 * @event Server#request
-                 * @type {Request}
-                 */
-                _this2.emit('request', request);
-                request.sendResponse();
+                var request = new _request2.default(_this2, req, res);
             });
             return true;
         }
