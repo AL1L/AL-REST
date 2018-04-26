@@ -1,0 +1,31 @@
+{
+  "name": "al-rest",
+  "version": "1.0.0",
+  "description": "Object image detection",
+  "main": "index.js",
+  "presets": [
+    "env",
+    "es2015"
+  ],
+  "scripts": {
+    "start": "nodemon src/app/app.js --exec babel-node --presets es2015,stage-2"
+  },
+  "author": "AL_1",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@tensorflow/tfjs": "0.x",
+    "express": "^4.16.3",
+    "tfjs-yolo-tiny": "^0.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.5.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "nodemon": "^1.17.3",
+    "parcel-bundler": "^1.7.0"
+  }
+}
