@@ -53,6 +53,8 @@ var EndpointManager = function () {
                         await endpoint.handle(request);
                     } catch (e) {
                         request.res.setStatus(500, e);
+                        console.error("Error while handleing endpoint " + endpoint._meta.name);
+                        console.error(e);
                         break;
                     }
                 }
