@@ -1,6 +1,6 @@
 {
   "name": "al-rest",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple class and event based rest library",
   "main": "dist/index.js",
   "presets": [
