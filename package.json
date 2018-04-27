@@ -16,7 +16,6 @@
   "author": "AL_1 <allen.m.lantz@gmail.com> (https://al1l.com)",
   "license": "UNLICENSED",
   "dependencies": {
-    "express": "^4.16.3",
     "formidable": "^1.2.1"
   },
   "devDependencies": {
