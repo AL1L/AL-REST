@@ -4,6 +4,7 @@ import EndpointManager from "./endpoints/endpoint-manager";
 
 const fs = require('fs');
 const http = require('http');
+const https = require('https');
 const net = require('net');
 const EventEmitter = require('events');
 
@@ -88,6 +89,24 @@ export default class Server extends EventEmitter {
         });
 
         this.http.on('request', (req, res) => {
+            const request = new Request(this, req, res);
+        });
+        /**
+         * Express server object
+         * @type {net.Server} express
+         */
+        this.https = https.createServer().listen(this.config.ssl_port, this.config.ssl_host, () => {
+            this.log.info(`Listening on http://${this.config.ssl_host}:${this.config.ssl_port}`);
+
+            /**
+             * SSL Ready event, called when ssl server has started and is ready to recive requests
+             *
+             * @event Server#sslstart
+             */
+            this.emit('sslready');
+        });
+
+        this.https.on('request', (req, res) => {
             const request = new Request(this, req, res);
         });
         return true;
