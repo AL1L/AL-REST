@@ -91,24 +91,30 @@ export default class Server extends EventEmitter {
         this.http.on('request', (req, res) => {
             const request = new Request(this, req, res);
         });
-        /**
-         * Express server object
-         * @type {net.Server} express
-         */
-        this.https = https.createServer().listen(this.config.ssl_port, this.config.ssl_host, () => {
-            this.log.info(`Listening on http://${this.config.ssl_host}:${this.config.ssl_port}`);
-
+        if (this.config.ssl.enabled) {
+            var options  = {
+                key: fs.readFileSync(this.config.ssl.key),
+                cert: fs.readFileSync(this.config.ssl.cert)
+              };
             /**
-             * SSL Ready event, called when ssl server has started and is ready to recive requests
-             *
-             * @event Server#sslstart
+             * Express server object
+             * @type {net.Server} express
              */
-            this.emit('sslready');
-        });
+            this.https = https.createServer().listen(this.config.ssl.port, this.config.ssl.host, () => {
+                this.log.info(`Listening on http://${this.config.ssl.host}:${this.config.ssl.port}`);
 
-        this.https.on('request', (req, res) => {
-            const request = new Request(this, req, res);
-        });
+                /**
+                 * SSL Ready event, called when ssl server has started and is ready to recive requests
+                 *
+                 * @event Server#sslstart
+                 */
+                this.emit('sslready');
+            });
+
+            this.https.on('request', (req, res) => {
+                const request = new Request(this, req, res);
+            });
+        }
         return true;
     }
 
